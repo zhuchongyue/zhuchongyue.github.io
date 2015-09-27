@@ -1,0 +1,46 @@
+
+@import "util/anim";
+
+header{
+  text-align: center;
+  nav{
+    perspective:500px;
+     div{
+      border-radius: 5px;
+      width: 120px;
+      height: 150px;
+      display: inline-block;
+
+       &.first{
+         background-color: aqua;
+         .tranform(rotateY(45deg));
+       }
+       &.second{
+         background-color: #2a23ff;
+         .tranform(scale(0.9,0.9));
+       }
+       &.three{
+         background-color: #ff9517;
+         .tranform(scale(0.9,0.9));
+       }
+       &.four{
+         background-color: #ff07bb;
+         .tranform(scale(0.9,0.9));
+       }
+       &.five{
+         background-color: #0aff54;
+         .tranform(rotateY(-45deg));
+       }
+    }
+  }
+}
+
+
+.content{
+  margin-top: 100px;
+  text-align: center;
+
+  .circle{
+    padding: 0 100px;
+  }
+}
