@@ -1,0 +1,104 @@
+@import "modules/reset";
+@import "common/effect";
+@import "common/var";
+
+
+.header{
+  width: 90%;
+  margin: 0 auto;
+  background-color: #deddd9;
+  .clearfix();
+  height: 100px;
+
+  .paper{
+    position: relative;
+    width: 250px;
+    height: 160px;
+
+    .word{
+      position: absolute;
+      bottom: 20px;
+      left: 30px;
+    }
+
+  }
+
+
+
+  ul{
+    position: absolute;
+    top: 50px;
+    left: 40%;
+  }
+
+  ul li{
+    float: left;
+    margin-right: 10px;
+    text-align: center ;
+
+    &>div{
+      min-height: 50px;
+      min-width: 40px;
+      color: #f5f5f5;
+      border-radius: 6px;
+      padding: 10px;
+    }
+
+    .home{
+      background-color: #55b50b;
+      margin-top: -20px;
+    }
+
+    .about{
+      background-color: #1caab4;
+      margin-top: -8px;
+    }
+
+    .life{
+      background-color: #b71d1b;
+      margin-top: 5px;
+    }
+
+    .html{
+      background-color: #cf9118;
+      margin-top: 5px;
+    }
+
+    .css3{
+      background-color: #b91b6f;
+      margin-top: -15px;
+    }
+
+    .js{
+      background-color: #717171;
+      margin-top: 8px;
+    }
+
+  }
+
+}
+
+
+.content{
+  background: url("../images/bg.jpg") center;
+  width: 90%;
+  margin: 0 auto;
+
+
+  .items{
+    .word{
+      height: 200px;
+      width: 200px;
+      background-color: #1a1b16;
+      margin: 50px;
+    }
+  }
+
+
+  aside{
+    width: 150px;
+    float: right;
+    border: 1px solid red;
+  }
+
+}
