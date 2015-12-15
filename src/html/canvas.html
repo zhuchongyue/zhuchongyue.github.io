@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas 深入学习</title>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="300" style="border: 1px solid red">
+        Your browser is not surpport canvas.
+    </canvas>
+
+    <script type="text/javascript">
+
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+
+        //context.save();
+        context.strokeStyle = "red";
+        //context.lineWidth = 5;
+        context.moveTo(0,0);
+       // context.lineTo(100,25);
+        context.quadraticCurveTo(100,100,0,200);
+        context.stroke();
+      //  context.restore();
+
+       // context.save();
+        context.moveTo(150,0);
+        context.bezierCurveTo(0,125,300,175,150,300);
+        context.stroke();
+       // context.restore();
+
+
+    </script>
+    <canvas id="canvas1" width="500" height="500" style="border: 1px solid red">
+        Your browser is not surpport canvas.
+    </canvas>
+
+    <script type="text/javascript">
+
+        var canvas = document.getElementById('canvas1');
+        var context = canvas.getContext('2d');
+
+        drawScreen();
+
+        function drawScreen(){
+
+            context.fillStyle = "black";
+            context.fillRect(10,10,200,200);
+
+            context.save();
+            context.beginPath();
+
+            context.rect(0,0,50,50);
+            context.clip();
+
+            context.beginPath();
+            context.strokeStyle = "red";
+            context.lineWidth = 5;
+            context.arc(100,100,100,0,2*Math.PI,false);
+            context.stroke();
+            context.closePath();
+
+            context.restore();
+
+            context.beginPath();
+            context.rect(0,0,500,500);
+            context.clip();
+
+            context.beginPath();
+            context.strokeStyle = "blue";
+            context.lineWidth = 5;
+            context.arc(100,100,50,0,2*Math.PI,false);
+            context.stroke();
+            context.closePath();
+
+        }
+    </script>
+
+    <canvas id="canvas2" width="500" height="500" style="border: 1px solid red">
+        Your browser is not surpport canvas.
+    </canvas>
+
+    <script type="text/javascript">
+
+        var canvas = document.getElementById('canvas2');
+        var context = canvas.getContext('2d');
+
+        drawScreen();
+
+        function drawScreen() {
+
+            context.fillStyle = "black";
+            context.fillRect(10,10,200,200);
+
+            context.fillStyle = "red";
+            context.fillRect(1,1,50,50);
+
+            context.globalCompositeOperation = "source-over";
+            context.fillRect(60,1,50,50);
+
+            context.globalCompositeOperation = "destination-over";
+            context.fillRect(1,60,50,50);
+
+            context.globalAlpha = .5;
+
+            context.globalCompositeOperation  = "source-atop";
+            context.fillRect(60,60,50,50);
+
+        }
+
+    </script>
+
+    <canvas id="canvasTransform" width="500" height="500" style="border: 1px solid red">
+        Your browser is not surpport canvas.
+    </canvas>
+
+    <script type="text/javascript">
+
+        var canvas = document.getElementById('canvasTransform');
+        var context = canvas.getContext('2d');
+        drawScreen();
+
+        function drawScreen(){
+
+            context.fillStyle = "black";
+            context.fillRect(20,20,50,50);
+
+            drawRoateRect(context,100,100,50,50,45);
+            drawRoateRect(context,200,100,50,50,75);
+            drawRoateRect(context,280,100,50,50,115);
+            drawRoateRect(context,350,100,50,50,135);
+
+
+
+            /*context.setTransform(1,0,0,1,0,0);
+
+            context.translate(125,125)
+
+            var angleInRadians = 45 * Math.PI / 180;
+
+            context.rotate(angleInRadians);
+
+
+            context.fillStyle = "red";
+            context.fillRect(-25,-25,50,50);*/
+        }
+
+
+        function drawRoateRect(context,x,y,w,h,degree){
+            context.setTransform(1,0,0,1,0,0);
+            context.translate(x+0.5*w,y+0.5*h);
+            context.rotate(degree * Math.PI / 180);
+            context.fillStyle = "red";
+            context.fillRect(-0.5*w,-0.5*h, w,h);
+        }
+
+
+
+    </script>
+</body>
+</html>
