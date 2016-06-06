@@ -3,7 +3,9 @@
 </style>
 <template>
 	<div class="rotate">
-		
+		<a href="" v-for="label in labels">
+			{{label.word}}
+		</a>
 	</div>
 </template>
 <script>
@@ -11,7 +13,8 @@
 		name: 'rotate',
 		data(){
 			return {
-				msg: "rotate"
+				msg: "rotate",
+				labels:[]
 			}
 		},
 		created(){
@@ -20,8 +23,8 @@
 		route: {
 			data(transition){
 				console.log("rotate data")
-				this.$http.get('/mock/item.json').then((data)=>{
-					console.log(data);
+				this.$http.get('../mock/item.json').then((resp)=>{
+					this.labels = resp.data.splice(0,2);
 				});
 				transition.next();
 			}

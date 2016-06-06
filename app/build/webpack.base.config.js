@@ -1,6 +1,8 @@
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
 
 	entry: './src/main.js',
@@ -19,7 +21,11 @@ module.exports = {
 			filename: 'index.html',
 			template: 'index.html',
 			inject: 'body'
-		})
+		}),
+		new CopyWebpackPlugin(
+			[
+			  { from: 'mock/**/*', to : './'}
+			])
 	],
 
 	module: {
@@ -40,6 +46,10 @@ module.exports = {
 					limit: 10000,
 					name: '[name].[ext]?[hash]'
 				}
+			},
+			{
+				test: /^mock\/(.*)\.json$/,
+				loader: 'file'
 			}
 		]
 	},
