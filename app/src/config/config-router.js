@@ -8,9 +8,15 @@ export function configRouter (router) {
 			}
 		},
 		'/html5': {
-			name: '/html5',
+			name: 'html5',
 			component(resolve) {
 				require(['../components/Html5/Html5.vue'],resolve);
+			}
+		},
+		'/rotate': {
+			name:'rotate',
+			component(resolve) {
+				require(['../components/Rotate/Rotate.vue'],resolve);
 			}
 		}
 	})

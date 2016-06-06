@@ -11,12 +11,15 @@
 	
 	export default {
 		name: "home",
+		ready() {
+			console.log('home ready')
+		},
 		data(){
 			return {
 				msg: "hello vue && es6"
 			}
 		},
-		create(){
+		created(){
 			console.log('create')
 		}
 	}

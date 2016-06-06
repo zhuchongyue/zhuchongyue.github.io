@@ -32,6 +32,9 @@
 
 		ready(){
 			console.log('app ready')
+		},
+		create() {
+			console.log('app create')
 		}
 
 	}
