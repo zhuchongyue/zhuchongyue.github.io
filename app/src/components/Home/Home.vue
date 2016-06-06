@@ -1,7 +1,6 @@
 <style lang="sass">
 	@import "Home.scss"
 </style>
-
 <template>
 	<div class="home">
 		<h1>home</h1>
@@ -11,6 +10,7 @@
 <script>
 	
 	export default {
+		name: "home",
 		data(){
 			return {
 				msg: "hello vue && es6"
