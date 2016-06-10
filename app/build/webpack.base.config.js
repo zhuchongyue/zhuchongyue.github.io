@@ -24,8 +24,10 @@ module.exports = {
 		}),
 		new CopyWebpackPlugin(
 			[
-			  { from: 'mock/**/*', to : './'}
-			])
+			  { from: 'mock/**/*', to : './'},
+			  { from: 'resource/**/*', to : './'}
+			]
+			)
 	],
 
 	module: {

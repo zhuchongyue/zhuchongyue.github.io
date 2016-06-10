@@ -18,6 +18,12 @@ export function configRouter (router) {
 			component(resolve) {
 				require(['../components/Rotate/Rotate.vue'],resolve);
 			}
+		},
+		'/linebreak': {
+			name: 'linebreak',
+			component(resolve) {
+				require(['../components/Css3/LineBreak.vue'],resolve);
+			}
 		}
 	})
 }
