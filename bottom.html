@@ -64,20 +64,49 @@
 		    background-position: -273px -140px;
 		}
 
+		.content {
+			color: #fff;
+			font-size: 25px;
+		}
+
 		.none {
 			display: none;
 		}
-
 	</style>
 </head>
 <body>
+	<div class="container">
+		<h1>测试scroll</h1>
+
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
+	</div>
 	<div class="bottom_zb_box">
         <div class="overlay"></div>
 	    <div class="bottom_zb_container">
-	    	<img src="http://cdn.duitang.com/uploads/item/201112/27/20111227143751_TtLkL.jpg" alt="">
-	    	<img src="http://cdn.duitang.com/uploads/item/201112/27/20111227143751_TtLkL.jpg" alt="">
-	    	<img src="http://cdn.duitang.com/uploads/item/201112/27/20111227143751_TtLkL.jpg" alt="">
-	    	<img src="http://cdn.duitang.com/uploads/item/201112/27/20111227143751_TtLkL.jpg" alt="">
+	    	<span class="content">内容区域</span>
+	    	<span class="content">内容区域</span>
+	    	<span class="content">内容区域</span>
+	    	<img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white.png" alt="">
+	    	<img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white.png" alt="">
+	    	<img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white.png" alt="">
+	    	<img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white.png" alt="">
 	    </div>
 	    <em class="icon_close"></em>                  
 	</div>
@@ -234,6 +263,18 @@
 					},500,"ease");
 				})
 				
+			})
+
+			var scrollTop = 0;
+
+			$(window).on("scroll",function(x){
+				var curTop = $("body").scrollTop();
+				if(curTop > scrollTop && curTop > 500){
+					console.log("满足条件")
+				}
+
+				scrollTop = curTop;
+				console.log(scrollTop)
 			})
 
 		})
