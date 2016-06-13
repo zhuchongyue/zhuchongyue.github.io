@@ -97,7 +97,7 @@
 		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
 		<div><img src="http://mat1.gtimg.com/www/images/qq2012/qqlogo_aoyun.png" alt=""></div>
 	</div>
-	<div class="bottom_zb_box">
+	<div class="bottom_zb_box none">
         <div class="overlay"></div>
 	    <div class="bottom_zb_container">
 	    	<span class="content">内容区域</span>
@@ -108,7 +108,7 @@
 	    	<img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white.png" alt="">
 	    	<img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white.png" alt="">
 	    </div>
-	    <em class="icon_close"></em>                  
+	    <em class="icon_close none"></em>                  
 	</div>
 
 	<a class="bottom_show_left" href="javascript:void(0)"></a>
@@ -269,11 +269,12 @@
 
 			$(window).on("scroll",function(x){
 				var curTop = $("body").scrollTop();
-				if(curTop > scrollTop && curTop > 500){
+				if(curTop > 200){
 					console.log("满足条件")
+					$(".bottom_show_left,.bottom_zb_box").removeClass("none")
+				}else{
+					$(".bottom_show_left,.bottom_zb_box").addClass("none")
 				}
-
-				scrollTop = curTop;
 				console.log(scrollTop)
 			})
 
