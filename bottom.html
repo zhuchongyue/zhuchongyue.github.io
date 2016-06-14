@@ -113,6 +113,7 @@
 
 	<a class="bottom_show_left" href="javascript:void(0)"></a>
 
+	<!-- 你如果使用jQuery的话  一下第一二个script都可以不要  只保留第3个就行-->
 	<script type="text/javascript" src="zepto.min.js"></script>
 	<script type="text/javascript">
 
@@ -265,17 +266,12 @@
 				
 			})
 
-			var scrollTop = 0;
 
 			$(window).on("scroll",function(x){
 				var curTop = $("body").scrollTop();
-				if(curTop > 200){
-					console.log("满足条件")
-					$(".bottom_show_left,.bottom_zb_box").removeClass("none")
-				}else{
-					$(".bottom_show_left,.bottom_zb_box").addClass("none")
-				}
-				console.log(scrollTop)
+				//修改下拉的像素位置
+				curTop > 200 ? $(".bottom_show_left,.bottom_zb_box").removeClass("none") : $(".bottom_show_left,.bottom_zb_box").addClass("none")
+				
 			})
 
 		})
