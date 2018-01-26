@@ -28,22 +28,17 @@
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vleft">
 <h1>引子</h1>
-<ul>
-<li>你难道没有遇到过？<ul class="moveIn">
+<h2>你难道没有遇到过？</h2>
+<ul class="moveIn">
 <li>到了联调阶段发现RD返回的数据结构跟预定完全不一样？</li>
 <li>前端组件化后，数据结构固定，接口数据对不上？</li>
 <li>同一套API兼容多端带回冗余数据？</li>
 <li>接口扁平化支持不好？</li>
-<li>接口升级<ul>
-<li><a href="https://xxx.com/path/v1/someapi.json" target="_blank">https://xxx.com/path/v1/someapi.json</a><ul>
-<li><a href="https://xxx.com/path/v2/someapi.json" target="_blank">https://xxx.com/path/v2/someapi.json</a></li>
-</ul>
-</li>
-</ul>
+<li>接口升级<pre><code class="javascript">1. https://xxx.com/path/v1/someapi.json
+2. https://xxx.com/path/v2/someapi.json
+</code></pre>
 </li>
 <li>...</li>
-</ul>
-</li>
 </ul>
 
 </article></section></slide>
@@ -220,38 +215,254 @@
 </script>
 </article></section></slide>
 <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
-<h1>Why GraphQL?</h1>
+<h1>what&#39;s GraphQL?</h1>
+<h3>最大的特点：按需索取数据，组织数据能力前置</h3>
+<img src="./img/cs.jpeg" alt="graphql">
 
 </article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><article class="flexbox vleft">
-<h1>How to use GraphQL?</h1>
-<h1>封面样式2</h1>
-<h2>左对齐</h2>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>what&#39;s GraphQL?</h1>
+<h3>express + express-graphqlHTTP + graphiql</h3>
+<h3>graphiql 可视化查询界面</h3>
+<h2>Demo: <a href="http://localhost:8886/" target="_blank">http://localhost:8886/</a></h2>
 
 </article></section></slide>
-<slide class="slide fill" style="background-image:url('./img/graphql1.png')"><section class="slide-wrapper"><article>
-<h2>使用背景</h2>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>what&#39;s GraphQL?</h1>
+<h2>基本概念(Graph Query Language 查询)</h2>
+<ul>
+<li>Operation Name</li>
+<li>Fields</li>
+<li>Arguments</li>
+<li>Aliases</li>
+<li>Fragments</li>
+<li>Variables</li>
+<li>Directives</li>
+<li>Mutations</li>
+</ul>
 
 </article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><hgroup>
-<h2>使用.class/#id/自定义属性样式</h2>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>what&#39;s GraphQL?</h1>
+<h2>基本概念(Graphql Type Language 类型语言)</h2>
+<ul class="moveIn">
+<li><p>Schema(GraphQLSchema): 描述数据格式和可操作的类型</p>
+<pre><code class="javascript">const schema = buildSchema(`
+    type Query {
+        hello(name: String = &quot;world&quot;): String!
+    }
+`)
 
-</hgroup><article>
-
-<pre><code class="javascript">alert(&#39;nodeppt&#39;);
+const schema = new GraphQLSchema({
+    query,
+    mutation
+})
 </code></pre>
+</li>
+</ul>
 
 </article></section></slide>
-<slide class="slide"><section class="slide-wrapper"><hgroup>
-<h2>主页面样式</h2>
-<h3>----是上下分界线</h3>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>what&#39;s GraphQL?</h1>
+<h2>基本概念(Graphql Type Language 类型语言)</h2>
+<ul class="moveIn">
+<li><p>对象类型和字段(GraphQLObjectType)</p>
+<pre><code class="javascript">type Character {
+  name: String!
+  appearsIn: [Episode]!
+}
 
-</hgroup><article>
-
-<p>nodeppt是基于nodejs写的支持 <strong>Markdown!</strong> 语法的网页PPT，当前版本：1.4.5</p>
-<p>Github：<a href="https://github.com/ksky521/nodeppt" target="_blank">https://github.com/ksky521/nodeppt</a></p>
+const Star = new GraphQLObjectType({
+    name: &#39;star&#39;,
+    description: &#39;star desc...&#39;,
+    fields: () =&gt; ({
+        id: { type: GraphQLInt },
+        name: { type: GraphQLString },
+        avatar: { type: GraphQLString },
+        createAt: { type: GraphQLString },
+        updataAt: { type: GraphQLString }
+    })
+})
+</code></pre>
+</li>
+</ul>
 
 </article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>what&#39;s GraphQL?</h1>
+<h2>基本概念(Graphql Type Language 类型语言)</h2>
+<ul class="moveIn">
+<li><p>列表和非空类型(GraphQLList &amp;&amp; GraphQLNonNull) </p>
+<pre><code class="javascript">type Person {
+  name: String!
+  friends: [Person!]!
+  brothers: [Person]!
+}
+
+const Person = new GraphQLObjectType({
+  name: &#39;person&#39;,
+  fields: () =&gt; ({
+    friends: { type: new GraphQLList(Person)},
+    name: { type: new GraphQLNonNull(GraphQLString) }
+  })
+})
+</code></pre>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>what&#39;s GraphQL?</h1>
+<h2>基本概念(Graphql Type Language 类型语言)</h2>
+<ul class="moveIn">
+<li><p>接口类型(GraphQLInterface) </p>
+<pre><code class="javascript">interface Animal {
+  eye: String!,
+  nose: String!
+}
+
+type Dog implements Animal {
+  eye: String!,
+  nose: String!,
+  leg: String
+}
+
+type Fish implements Animal {
+  eye: String!,
+  nose: String!,
+  gill: String!
+}
+</code></pre>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>what&#39;s GraphQL?</h1>
+<h2>基本概念(Graphql Type Language 类型语言)</h2>
+<ul class="moveIn">
+<li><p>联合类型(GraphQLUnionType) </p>
+<pre><code class="javascript">type Dog{
+  ...
+}
+
+type Cat {
+  ...
+}
+
+type Mouse {
+  ...
+}
+union Pet = Dog | Cat | Mouse
+</code></pre>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>what&#39;s GraphQL?</h1>
+<h2>基本概念(Graphql Type Language 类型语言)</h2>
+<ul class="moveIn">
+<li>输入类型(GraphQLInputObjectType) <pre><code class="javascript">enum Sex {
+  MALE
+  FEMALE
+}
+input ReviewInput {
+  name: String!
+  sex: Sex
+}
+</code></pre>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>GraphQL生态-relay</h1>
+<ul class="moveIn">
+<li><p>Relay是构建数据驱动 React 应用的js框架。用于接管react中的数据获取。</p>
+</li>
+<li><p>特点：</p>
+<ul>
+<li><p>声明式：不再使用一个命令式API与数据存储通讯。而是简单的使用GraphQL声明组件数据需求，让Relay理解如何及什么时候获取你的数据。</p>
+</li>
+<li><p>托管：Relay聚合查询成有效的网络请求，只获取需要的数据。</p>
+</li>
+<li><p>转变：Relay允许你使用GraphQL mutations 在客户端和服务器端转变数据，提供自动数据一致，优化更新和错误处理。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>GraphQL生态-relay</h1>
+<pre><code class="javascript">class Todo extends React.Component {
+    ...
+  }
+
+  export default createFragmentContainer(Todo, {
+    todo: graphql`
+      fragment Todo_todo on Todo {
+        complete,
+        id,
+        text,
+      }
+    `,
+    viewer: graphql`
+      fragment Todo_viewer on User {
+        id,
+        totalCount,
+        completedCount,
+      }
+    `,
+  });
+</code></pre>
+<ul>
+<li>Demo: <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a></li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>GraphQL生态-Apollo</h1>
+<ul>
+<li>目前社区最流行的GraphQL解决方案提供者，提供了从 client 到 server 的一整套完整的工具链。</li>
+<li>建议生产环境使用</li>
+</ul>
+<img src="./img/apollo.png" alt="apollo">
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>Who uses GraphQL?</h1>
+<ul class="moveIn">
+<li>Facebook</li>
+<li>Github (<a href="https://developer.github.com/v4/explorer/" target="_blank">https://developer.github.com/v4/explorer/</a>)</li>
+<li>Alibaba TQL Egg (<a href="https://github.com/eggjs/egg-graphql" target="_blank">https://github.com/eggjs/egg-graphql</a>)</li>
+<li>...</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>为什么没有🔥起来？</h1>
+<ul class="moveIn">
+<li>安全问题-完全暴露后端数据</li>
+<li>Field Resolve引起的查询冗余</li>
+<li>利好Client端，依赖后端改造</li>
+<li>稳定性</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>References</h1>
+<ol>
+<li>GraphQL Specification: <a href="http://facebook.github.io/graphql/October2016/" target="_blank">http://facebook.github.io/graphql/October2016/</a></li>
+<li>graphql.js: <a href="https://github.com/f/graphql.js" target="_blank">https://github.com/f/graphql.js</a></li>
+<li>Awesome-graphql: <a href="https://github.com/chentsulin/awesome-graphql" target="_blank">https://github.com/chentsulin/awesome-graphql</a></li>
+<li>Relay: <a href="https://facebook.github.io/relay/" target="_blank">https://facebook.github.io/relay/</a></li>
+<li>Apollo-GraphQL: <a href="https://github.com/apollographql" target="_blank">https://github.com/apollographql</a></li>
+</ol>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"></section></slide>
         
 
         <!-- <slide class="slide logoslide dark nobackground">
